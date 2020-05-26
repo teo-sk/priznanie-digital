@@ -13,7 +13,7 @@ const options = {
   location: 30,
   distance: 100,
   minMatchCharLength: 2,
-  keys: ['code', 'label'],
+  keys: ['code', 'label', 'translit'],
 }
 
 function useFuse<T>(data: T[]): Fuse<T, { includeScore: true }> {

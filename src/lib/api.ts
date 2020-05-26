@@ -6,6 +6,7 @@ import {
 } from '../types/api'
 import { PostponeUserInput } from '../types/PostponeUserInput'
 import { TemplateParams } from './sendinblue'
+import { translit } from './utils'
 
 export const getCity = async (zip: string) => {
   const response = await fetch(
@@ -43,5 +44,9 @@ export const saveEmail = async (
 }
 
 export const getNace = async () => {
-  return (await fetch(`nace.json`)).json()
+  return fetch(`nace.json`)
+    .then((response) => response.json())
+    .then((values) => {
+      return values.map((item) => ({ ...item, translit: translit(item.label) }))
+    })
 }
